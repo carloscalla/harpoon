@@ -85,19 +85,19 @@ function M.get_default_config()
 
             ---@param list_item HarpoonListItem
             display = function(list_item)
+                local icons_loaded, icons_package =
+                    pcall(require, "nvim-web-devicons")
+
+                if not icons_loaded then
+                    return list_item.value
+                end
+
                 local ext = ""
                 for i = #list_item.value, 1, -1 do
                     if string.byte(list_item.value, i) == string.byte(".") then
                         ext = list_item.value:sub(i + 1)
                         break
                     end
-                end
-
-                local icons_loaded, icons_package =
-                    pcall(require, "nvim-web-devicons")
-
-                if not icons_loaded then
-                    return list_item.value
                 end
 
                 local icon = icons_package.get_icon(list_item, ext) or ""

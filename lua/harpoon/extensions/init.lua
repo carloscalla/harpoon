@@ -68,12 +68,15 @@ function Builtins.highlight_current_file()
     return {
         UI_CREATE = function(cx)
             for line_number, file in pairs(cx.contents) do
-                -- Searching for first nbsp
-                local nbsp_idx = string.find(file, " ", 1, true)
-                local parsed_file = nbsp_idx and string.sub(file, nbsp_idx + 1)
-                    or file
+                local icons_loaded = pcall(require, "nvim-web-devicons")
 
-                if string.find(cx.current_file, parsed_file, 1, true) then
+                if icons_loaded then
+                    -- Searching for first nbsp
+                    local nbsp_idx = string.find(file, " ", 1, true)
+                    file = nbsp_idx and string.sub(file, nbsp_idx + 1) or file
+                end
+
+                if string.find(cx.current_file, file, 1, true) then
                     -- highlight the harpoon menu line that corresponds to the current buffer
                     vim.api.nvim_buf_add_highlight(
                         cx.bufnr,
