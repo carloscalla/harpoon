@@ -93,10 +93,14 @@ function M.get_default_config()
                     end
                 end
 
-                local icon = require("nvim-web-devicons").get_icon(
-                    list_item,
-                    ext
-                ) or ""
+                local icons_loaded, icons_package =
+                    pcall(require, "nvim-web-devicons")
+
+                if not icons_loaded then
+                    return list_item.value
+                end
+
+                local icon = icons_package.get_icon(list_item, ext) or ""
 
                 return icon .. " " .. list_item.value
             end,
