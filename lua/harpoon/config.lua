@@ -93,16 +93,9 @@ function M.get_default_config()
                     return list_item.value
                 end
 
-                local ext = ""
-                for i = #list_item.value, 1, -1 do
-                    if string.byte(list_item.value, i) == string.byte(".") then
-                        ext = list_item.value:sub(i + 1)
-                        break
-                    end
-                end
-
-                local icon = icons_package.get_icon(list_item.value, ext)
-                    or ""
+                local icon = icons_package.get_icon(
+                    vim.fn.fnamemodify(list_item.value, ":t")
+                ) or ""
 
                 return icon .. nbsp .. list_item.value
             end,
