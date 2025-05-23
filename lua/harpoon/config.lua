@@ -101,7 +101,8 @@ function M.get_default_config()
                     end
                 end
 
-                local icon = icons_package.get_icon(list_item, ext) or ""
+                local icon = icons_package.get_icon(list_item.value, ext)
+                    or ""
 
                 return icon .. nbsp .. list_item.value
             end,
