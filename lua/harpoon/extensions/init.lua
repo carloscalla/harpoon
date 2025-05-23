@@ -68,12 +68,12 @@ function Builtins.highlight_current_file()
     return {
         UI_CREATE = function(cx)
             for line_number, file in pairs(cx.contents) do
-                local nbsp = "\u{2002}"
+                local nbsp = "\u{00A0}"
                 local icons_loaded = pcall(require, "nvim-web-devicons")
 
                 if icons_loaded then
-                    -- Searching for first nbsp
-                    local nbsp_idx = string.find(file, nbsp, 1, true)
+                    -- Searching for first nbsp end position
+                    local _, nbsp_idx = string.find(file, nbsp, 1, true)
                     file = nbsp_idx and string.sub(file, nbsp_idx + 1) or file
                 end
 

@@ -85,7 +85,7 @@ function M.get_default_config()
 
             ---@param list_item HarpoonListItem
             display = function(list_item)
-                local nbsp = "\u{2002}"
+                local nbsp = "\u{00A0}"
                 local icons_loaded, icons_package =
                     pcall(require, "nvim-web-devicons")
 
