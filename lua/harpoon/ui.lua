@@ -107,6 +107,12 @@ function HarpoonUI:_create_window(toggle_opts)
         height = height,
         style = "minimal",
         border = toggle_opts.border or "single",
+
+        -- Ivy kind of style
+        -- Hard set for personal use
+        -- row = vim.o.lines - 1,
+        -- col = 0,
+        -- width = vim.o.columns,
     })
 
     if win_id == 0 then
