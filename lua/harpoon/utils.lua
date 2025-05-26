@@ -22,4 +22,6 @@ function M.is_white_space(str)
     return str:gsub("%s", "") == ""
 end
 
+M.nbsp = "\u{00A0}"
+
 return M

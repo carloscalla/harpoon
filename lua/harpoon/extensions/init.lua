@@ -1,3 +1,5 @@
+local Utils = require("harpoon.utils")
+
 ---@class HarpoonExtensions
 ---@field listeners HarpoonExtension[]
 local HarpoonExtensions = {}
@@ -68,21 +70,19 @@ function Builtins.highlights()
     return {
         UI_CREATE = function(cx)
             for line_number, file in pairs(cx.contents) do
-                local nbsp = "\u{00A0}"
-                local icons_loaded, icons_package =
-                    pcall(require, "nvim-web-devicons")
                 local end_col = #file
 
                 local nbsp_idx = nil
 
-                if icons_loaded then
+                if _G.Harpoon.icons_pkg ~= nil then
                     -- Searching for first nbsp end position
                     local _ = nil
-                    _, nbsp_idx = string.find(file, nbsp, 1, true)
+                    _, nbsp_idx = string.find(file, Utils.nbsp, 1, true)
                     file = nbsp_idx and string.sub(file, nbsp_idx + 1) or file
 
-                    local _, hl_icon =
-                        icons_package.get_icon(vim.fn.fnamemodify(file, ":t"))
+                    local _, hl_icon = _G.Harpoon.icons_pkg.get_icon(
+                        vim.fn.fnamemodify(file, ":t")
+                    )
 
                     vim.api.nvim_buf_set_extmark(
                         cx.bufnr,
