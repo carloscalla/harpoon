@@ -72,11 +72,10 @@ function Builtins.highlights()
             for line_number, file in pairs(cx.contents) do
                 local end_col = #file
 
-                local nbsp_idx = nil
+                local nbsp_idx
 
                 if _G.Harpoon.icons_pkg ~= nil then
                     -- Searching for first nbsp end position
-                    local _ = nil
                     _, nbsp_idx = string.find(file, Utils.nbsp, 1, true)
                     file = nbsp_idx and string.sub(file, nbsp_idx + 1) or file
 

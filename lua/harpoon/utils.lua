@@ -3,6 +3,7 @@ local M = {}
 function M.trim(str)
     return str:gsub("^%s+", ""):gsub("%s+$", "")
 end
+
 function M.remove_duplicate_whitespace(str)
     return str:gsub("%s+", " ")
 end
