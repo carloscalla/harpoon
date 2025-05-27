@@ -74,12 +74,12 @@ function Builtins.highlights()
 
                 local nbsp_idx
 
-                if _G.Harpoon.icons_pkg ~= nil then
+                if _G._harpoon.icons_pkg ~= nil then
                     -- Searching for first nbsp end position
                     _, nbsp_idx = string.find(file, Utils.nbsp, 1, true)
                     file = nbsp_idx and string.sub(file, nbsp_idx + 1) or file
 
-                    local _, hl_icon = _G.Harpoon.icons_pkg.get_icon(
+                    local _, hl_icon = _G._harpoon.icons_pkg.get_icon(
                         vim.fn.fnamemodify(file, ":t")
                     )
 

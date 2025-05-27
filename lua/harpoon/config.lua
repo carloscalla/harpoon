@@ -86,11 +86,11 @@ function M.get_default_config()
 
             ---@param list_item HarpoonListItem
             display = function(list_item)
-                if not _G.Harpoon.icons_pkg then
+                if not _G._harpoon.icons_pkg then
                     return list_item.value
                 end
 
-                local icon = _G.Harpoon.icons_pkg.get_icon(
+                local icon = _G._harpoon.icons_pkg.get_icon(
                     vim.fn.fnamemodify(list_item.value, ":t")
                 ) or ""
 

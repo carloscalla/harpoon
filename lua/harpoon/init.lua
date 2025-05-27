@@ -6,17 +6,17 @@ local List = require("harpoon.list")
 local Extensions = require("harpoon.extensions")
 local HarpoonGroup = require("harpoon.autocmd")
 
-_G.Harpoon = _G.Harpoon or {}
+_G._harpoon = _G._harpoon or {}
 
 local function load_icons()
     local icons_loaded, icons_pkg
 
-    if _G.Harpoon.icons_pkg == nil then
+    if _G._harpoon.icons_pkg == nil then
         icons_loaded, icons_pkg = pcall(require, "nvim-web-devicons")
     end
 
     if icons_loaded then
-        _G.Harpoon.icons_pkg = icons_pkg
+        _G._harpoon.icons_pkg = icons_pkg
     end
 end
 
